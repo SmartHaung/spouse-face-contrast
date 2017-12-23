@@ -1,54 +1,58 @@
 //index.js
 //获取应用实例
-const app = getApp()
-
 Page({
   data: {
-    motto: 'Hello World',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    url1: "",
+    url2: "",
+    score: 0
   },
-  //事件处理函数
-  bindViewTap: function() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
-  },
-  onLoad: function () {
-    if (app.globalData.userInfo) {
-      this.setData({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true
-      })
-    } else if (this.data.canIUse){
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = res => {
-        this.setData({
-          userInfo: res.userInfo,
-          hasUserInfo: true
+  addPhoto(index) {
+    var that = this;
+    wx.chooseImage({
+      success: function (res) {
+        var tempFilePaths = res.tempFilePaths
+        var tempUrl = ""
+        wx.uploadFile({
+          url: 'https://eatingcode.oss-cn-shenzhen.aliyuncs.com',
+          filePath: tempFilePaths[0],
+          name: 'file',
+          formData: {
+            name: tempFilePaths[0],
+            key: "${filename}",
+            policy: "eyJleHBpcmF0aW9uIjoiMjAyMC0wMS0wMVQxMjowMDowMC4wMDBaIiwiY29uZGl0aW9ucyI6W1siY29udGVudC1sZW5ndGgtcmFuZ2UiLDAsMTA0ODU3NjAwMF1dfQ==",
+            OSSAccessKeyId: "LTAIqMsDdr93vdQu",
+            success_action_status: "200",
+            signature: "PCjq4vpc4gdt3cmU4XTi3eLB+Ow="
+          },
+          success: function (res) {
+            if (index == 1) {
+              that.setData({ url1: tempFilePaths[0].replace("http://tmp/", "http://huangwenbin.xin:8080/") });
+            }
+            else {
+              that.setData({ url2: tempFilePaths[0].replace("http://tmp/", "http://huangwenbin.xin:8080/") });
+            }
+          }
         })
       }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: res => {
-          app.globalData.userInfo = res.userInfo
-          this.setData({
-            userInfo: res.userInfo,
-            hasUserInfo: true
-          })
-        }
-      })
-    }
+    })
   },
-  getUserInfo: function(e) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+  addPhotoTwo() {
+    this.addPhoto(2)
+  },
+  addPhotoOne() {
+    this.addPhoto(1)
+  },
+  contrast() {
+    var that = this;
+    wx.request({
+      url: '',
+      data: {
+        url1: that.data.url1,
+        url2: that.data.url2
+      },
+      success: function (res) {
+        that.setData({ score: 100 });
+      }
     })
   }
 })
