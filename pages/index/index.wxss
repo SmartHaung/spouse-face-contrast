@@ -1,0 +1,6 @@
+.sm_img2 {
+  display: block;
+  width: 28%;
+  float: left;
+  margin: 10px 2.5%;
+}

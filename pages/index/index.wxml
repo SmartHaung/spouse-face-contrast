@@ -1,9 +1,11 @@
 <view class="container">
   <view>
-    <button bindtap='addPhotoOne'> 添加照片 </button>
-    <image src='{{url1}}' mode="aspectFit"></image>
-    <button bindtap='addPhotoTwo'> 添加照片 </button>
-    <image src='{{url2}}' mode="aspectFit"></image>
+    <!-- <button bindtap='addPhotoOne'> 添加照片 </button> -->
+    <image src='{{url1}}' mode="aspectFit" bindtap='addPhotoOne'></image>
+    <!-- <button bindtap='addPhotoTwo'> 添加照片 </button> -->
+    <image src='{{url2}}' mode="aspectFit" bindtap='addPhotoTwo'></image>
     <button bindtap='contrast'> 开始测试 </button>
+    <text>相似度：{{score}}</text>
+    <loading hidden="{{hiddenLoading}}">正在加载</loading>
   </view>
 </view>
