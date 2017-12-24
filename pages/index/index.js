@@ -10,6 +10,7 @@ Page({
   },
   addPhoto(index) {
     var that = this;
+    that.setData({ score: 0 });
     wx.chooseImage({
       success: function (res) {
         var tempFilePaths = res.tempFilePaths
