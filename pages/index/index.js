@@ -1,17 +1,45 @@
 //index.js
 //获取应用实例
 Page({
+  onShareAppMessage: function () {
+    return {
+      title: '测测夫妻相',
+      path: '/index/index'
+    }
+  },
   data: {
     defaultUrl: "./add.png",
     url1: "./add.png",
     url2: "./add.png",
     score: 0,
-    hiddenLoading: true
+    hiddenLoading: true,
+    showResult: false,
+    tips: ''
+  },
+  _getTips: function (score) {
+    if (score == -1) {
+      return '额，客官，我有个不太成熟的小建议，您可否，重新选择，两张正常的照片呢ㄟ( ▔, ▔ )ㄏ';
+    } else if (score > -1 && score <= 30) {
+      return '我觉得我们还是测测手相吧ㄟ( ▔, ▔ )ㄏ';
+    } else if (score > 30 && score < 60) {
+      return '听说，待在一起久了的情侣才有夫妻相，可能你们是异地恋吧ㄟ( ▔, ▔ )ㄏ';
+    } else if (score >= 60 && score < 80) {
+      return '身无彩凤双飞翼，心有灵犀一点通。革命尚未成功，同志仍需努力。';
+    } else if (score >= 80 < 99) {
+      return '此时此刻是个好日子，我觉得你们可以去领证了，或者，对ta说一句，我爱你';
+    } else if (score == 99) {
+      return '少了一分，可能是怕骄傲吧';
+    } else if (score == 100) {
+      return '哇哦，您确定要和自己结婚吗ㄟ( ▔, ▔ )ㄏ';
+    } else if (score > 100) {
+      return '这个，肯定是我们出故障了';
+    }
   },
   addPhoto(index) {
     var that = this;
     that.setData({
-      score: 0
+      score: 0,
+      showResult: false
     });
     wx.chooseImage({
       success: function (res) {
@@ -65,18 +93,18 @@ Page({
       url: 'https://www.huangwenbin.xin/interface/face/contrast?url1=' + that.data.url1 + "&url2=" + that.data.url2,
       success: function (res) {
         if (res && res.data && res.data.response && res.data.response.code && res.data.response.code == 1001) {
-          wx.navigateTo({
-            url: '/pages/result/result?score=' + res.data.response.faceContrastResult.score
-          })
+          that.setData({
+            score: parseInt(res.data.response.faceContrastResult.score || 100)
+          });
         } else {
-          wx.navigateTo({
-            url: '/pages/result/result?score=-1'
-          })
-          // wx.showToast({
-          //   title: "测试失败",
-          //   duration: 2000
-          // })
+          that.setData({
+            score: -1
+          });
         }
+        that.setData({
+          tips: that._getTips(that.data.score),
+          showResult: true
+        });
       },
       complete: function () {
         wx.hideLoading();

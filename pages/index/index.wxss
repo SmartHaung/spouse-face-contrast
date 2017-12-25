@@ -1,25 +1,42 @@
-.container,
-.imgWrapper {
-    width: 100%;
+.container, .imgWrapper {
+  width: 100%;
 }
+
 .imgWrapper {
-    display: flex;
+  display: flex;
 }
+
 .addBtn {
-    flex: 1;
-    min-width: 0;
+  flex: 1;
+  min-width: 0;
 }
+
 .addBtn > image {
-    width: 100%;
-    height: 250rpx;
+  width: 100%;
+  height: 250rpx;
 }
+
 .addBtn > text {
-    display: block;
-    width: 100%;
-    text-align: center;
+  display: block;
+  width: 100%;
+  text-align: center;
 }
+
 .submit {
-    display: block;
-    width: 95%;
-    margin-top: 60rpx;
+  display: block;
+  width: 95%;
+  margin-top: 60rpx;
+}
+
+.result {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.result > text {
+  padding-left: 30px;
+  padding-right: 30px;
+  margin-top: 40rpx;
 }

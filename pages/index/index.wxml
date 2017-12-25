@@ -1,13 +1,17 @@
+<view class="result" wx:if="{{showResult}}">
+  <text class="result-score">相似度：{{score==-1?0:score}}</text>
+  <text class="result-tips">{{tips}}</text>
+</view>
 <view class="container">
-    <view class="imgWrapper">
-        <view class="addBtn">
-            <image src='{{url1}}' mode="aspectFit" bindtap='addPhotoOne'></image>
-            <text class="">选择第一张照片</text>
-        </view>
-        <view class="addBtn">
-            <image src='{{url2}}' mode="aspectFit" bindtap='addPhotoTwo'></image>
-            <text class="">选择第二张照片</text>
-        </view>
+  <view class="imgWrapper">
+    <view class="addBtn">
+      <image src='{{url1}}' mode="aspectFit" bindtap='addPhotoOne'></image>
+      <text class="">选择第一张照片</text>
     </view>
-    <button bindtap='contrast' type="primary" class="submit"> 开始测试 </button>
+    <view class="addBtn">
+      <image src='{{url2}}' mode="aspectFit" bindtap='addPhotoTwo'></image>
+      <text class="">选择第二张照片</text>
+    </view>
+  </view>
+  <button bindtap='contrast' type="primary" class="submit"> 开始测试 </button>
 </view>
