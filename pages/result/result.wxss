@@ -1,0 +1,11 @@
+.result {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.result > text {
+    padding-left: 30px;
+    padding-right: 30px;
+    margin-top: 40rpx;
+}

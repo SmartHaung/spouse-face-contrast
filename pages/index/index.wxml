@@ -1,9 +1,13 @@
 <view class="container">
-  <view>
-    <image src='{{url1}}' mode="aspectFit" bindtap='addPhotoOne'></image>
-    <image src='{{url2}}' mode="aspectFit" bindtap='addPhotoTwo'></image>
-    <button bindtap='contrast'> 开始测试 </button>
-    <text>相似度：{{score}}</text>
-    <loading hidden="{{hiddenLoading}}">正在加载</loading>
-  </view>
+    <view class="imgWrapper">
+        <view class="addBtn">
+            <image src='{{url1}}' mode="aspectFit" bindtap='addPhotoOne'></image>
+            <text class="">选择第一张照片</text>
+        </view>
+        <view class="addBtn">
+            <image src='{{url2}}' mode="aspectFit" bindtap='addPhotoTwo'></image>
+            <text class="">选择第二张照片</text>
+        </view>
+    </view>
+    <button bindtap='contrast' type="primary" class="submit"> 开始测试 </button>
 </view>

@@ -1,0 +1,5 @@
+
+<view class="result">
+    <text class="result-score">相似度：{{score}}</text>
+    <text class="result-tips">{{tips}}</text>
+</view>
