@@ -4,7 +4,7 @@ Page({
   onShareAppMessage: function () {
     return {
       title: '测测夫妻相',
-      path: '/index/index'
+      path: 'pages/index/index'
     }
   },
   data: {
