@@ -6,11 +6,11 @@
   <view class="imgWrapper">
     <view class="addBtn">
       <image src='{{url1}}' mode="aspectFit" bindtap='addPhotoOne'></image>
-      <text class="">选择第一张照片</text>
+      <text class="">选择你的照片</text>
     </view>
     <view class="addBtn">
       <image src='{{url2}}' mode="aspectFit" bindtap='addPhotoTwo'></image>
-      <text class="">选择第二张照片</text>
+      <text class="">选择TA的照片</text>
     </view>
   </view>
   <button bindtap='contrast' type="primary" class="submit"> 开始测试 </button>
