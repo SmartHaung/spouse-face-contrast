@@ -8,7 +8,7 @@ Page({
     },
     onLoad: function (options) {
         console.log(options)
-        const score = parseInt(options.score || 100);
+        const score = parseInt(options.score || 0);
         this.setData({
             score: score,
             tips: this._getTips(score)

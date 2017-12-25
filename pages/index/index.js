@@ -94,7 +94,7 @@ Page({
       success: function (res) {
         if (res && res.data && res.data.response && res.data.response.code && res.data.response.code == 1001) {
           that.setData({
-            score: parseInt(res.data.response.faceContrastResult.score || 100)
+            score: parseInt(res.data.response.faceContrastResult.score || 0)
           });
         } else {
           that.setData({
