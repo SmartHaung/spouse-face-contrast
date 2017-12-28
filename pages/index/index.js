@@ -44,6 +44,7 @@ Page({
     wx.chooseImage({
       success: function (res) {
         var tempFilePaths = res.tempFilePaths
+        debugger
         var picName = "face_" + Math.random().toString(36).substr(2) + tempFilePaths[0].slice(tempFilePaths[0].length - 4, tempFilePaths[0].length);
         wx.uploadFile({
           url: 'https://eatingcode.oss-cn-shenzhen.aliyuncs.com',
