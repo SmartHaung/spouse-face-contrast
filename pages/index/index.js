@@ -114,7 +114,7 @@ Page({
         url: 'https://www.huangwenbin.xin/interface/face/contrast?url1=' + that.data.url1 + "&url2=" + that.data.url2,
         success: function (res) {
           if (res && res.data && res.data.response && res.data.response.code && res.data.response.code == 1003 && res.data.response == "其他程序处理中") {
-            debugger
+
           } else {
             if (res && res.data && res.data.response && res.data.response.code && res.data.response.code == 1001) {
               that.setData({
@@ -134,6 +134,6 @@ Page({
           }
         }
       })
-    }, 200)
+    }.bind(that), 200)
   }
 })
