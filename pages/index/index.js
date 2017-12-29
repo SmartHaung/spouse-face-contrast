@@ -113,7 +113,7 @@ Page({
       wx.request({
         url: 'https://www.huangwenbin.xin/interface/face/contrast?url1=' + that.data.url1 + "&url2=" + that.data.url2,
         success: function (res) {
-          if (res && res.data && res.data.response && res.data.response.code && res.data.response.code == 1003 && res.data.response == "其他程序处理中") {
+          if (res && res.data && res.data.response && res.data.response.code && res.data.response.code == 1003 && res.data.response.msg == "其他程序处理中") {
 
           } else {
             if (res && res.data && res.data.response && res.data.response.code && res.data.response.code == 1001) {
