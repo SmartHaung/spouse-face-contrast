@@ -44,10 +44,9 @@ Page({
     wx.chooseImage({
       success: function (res) {
         var tempFilePaths = res.tempFilePaths
-        debugger
-        var picName = "face_" + Math.random().toString(36).substr(2) + tempFilePaths[0].slice(tempFilePaths[0].length - 4, tempFilePaths[0].length);
+        var picName = "face_" + new Date().getFullYear() + ('00' + (new Date().getMonth() + 1)).slice(-2) + ('00' + new Date().getDate()).slice(-2) + Math.random().toString(36).substr(6) + tempFilePaths[0].slice(tempFilePaths[0].length - 4, tempFilePaths[0].length);
         wx.uploadFile({
-          url: 'https://eatingcode.oss-cn-shenzhen.aliyuncs.com',
+          url: 'https://userpicture.oss-cn-shenzhen.aliyuncs.com',
           filePath: tempFilePaths[0],
           name: 'file',
           formData: {
@@ -61,11 +60,11 @@ Page({
           success: function (res) {
             if (index == 1) {
               that.setData({
-                url1: "http://huangwenbin.xin:8080/" + picName
+                url1: "https://userpicture.oss-cn-shenzhen.aliyuncs.com/" + picName
               });
             } else {
               that.setData({
-                url2: "http://huangwenbin.xin:8080/" + picName
+                url2: "https://userpicture.oss-cn-shenzhen.aliyuncs.com/" + picName
               });
             }
           }
@@ -91,7 +90,7 @@ Page({
     var that = this;
     wx.showLoading();
     wx.request({
-      url: 'https://www.huangwenbin.xin/interface/face/contrast?url1=' + that.data.url1 + "&url2=" + that.data.url2,
+      url: 'https://www.huangwenbin.xin/localinterface/face/contrast?url1=' + that.data.url1 + "&url2=" + that.data.url2,
       success: function (res) {
         if (res && res.data && res.data.response && res.data.response.code && res.data.response.code == 1001) {
           that.setData({
