@@ -92,7 +92,9 @@ Page({
     wx.request({
       url: 'https://www.huangwenbin.xin/localinterface/face/contrast?url1=' + that.data.url1 + "&url2=" + that.data.url2,
       success: function (res) {
-        if (res && res.data && res.data.response && res.data.response.code && res.data.response.code == 1001) {
+        if (res && res.data && res.data.response && res.data.response.code && res.data.response.code == 1003 && res.data.response.msg == "其他程序处理中") {
+
+        } else if (res && res.data && res.data.response && res.data.response.code && res.data.response.code == 1001) {
           that.setData({
             score: parseInt(res.data.response.faceContrastResult.score || 0),
             tips: that._getTips(parseInt(res.data.response.faceContrastResult.score || 0)),
@@ -113,6 +115,7 @@ Page({
       wx.request({
         url: 'https://www.huangwenbin.xin/interface/face/contrast?url1=' + that.data.url1 + "&url2=" + that.data.url2,
         success: function (res) {
+
           if (res && res.data && res.data.response && res.data.response.code && res.data.response.code == 1003 && res.data.response.msg == "其他程序处理中") {
 
           } else {
@@ -134,6 +137,6 @@ Page({
           }
         }
       })
-    }.bind(that), 200)
+    }.bind(that), 500)
   }
 })
